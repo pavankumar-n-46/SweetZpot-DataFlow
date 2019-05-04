@@ -896,15 +896,15 @@
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xc-Cs-gIU">
                                 <rect key="frame" x="145" y="5" width="92" height="273"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Lhh-Ba-pn8">
-                                    <rect key="frame" x="0.0" y="0.0" width="76" height="273"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="77" height="273"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="hkc-Ja-YwW">
-                                            <rect key="frame" x="0.0" y="0.0" width="76" height="273"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="77" height="273"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="76" height="273"/>
+                                            <size key="minSize" width="77" height="273"/>
                                             <size key="maxSize" width="240" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -915,13 +915,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Hi5-fR-3hp">
-                                    <rect key="frame" x="76" y="0.0" width="16" height="273"/>
+                                    <rect key="frame" x="77" y="0.0" width="15" height="273"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NJE-cZ-ey8">
                                 <rect key="frame" x="236" y="92" width="215" height="32"/>
-                                <buttonCell key="cell" type="push" title="Stop writing to CSV and Exit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nTZ-Bq-IUp">
+                                <buttonCell key="cell" type="push" title="Start writing to CSV" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nTZ-Bq-IUp">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -929,11 +929,39 @@
                                     <action selector="writingToCSV:" target="VU9-yG-kGY" id="F7v-vu-VWI"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="apL-qe-lEn">
+                                <rect key="frame" x="248" y="5" width="184" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="NVG-Ik-tnC"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" title="CSV file will be saved in Documents folder" id="2O0-X1-qhp">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sMC-iQ-jRl">
+                                <rect key="frame" x="239" y="59" width="212" height="32"/>
+                                <buttonCell key="cell" type="push" title="Exit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lue-sO-FLB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exitPressed:" target="VU9-yG-kGY" id="611-Yk-tv6"/>
+                                </connections>
+                            </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="9Zy-Re-fn4">
+                                <rect key="frame" x="422" y="102" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="0Xc-Cs-gIU" firstAttribute="top" secondItem="YSj-qu-khh" secondAttribute="bottom" constant="5" id="1cC-Sa-6VG"/>
                             <constraint firstItem="2sv-Ht-EwB" firstAttribute="top" secondItem="COJ-7m-Ab5" secondAttribute="bottom" constant="5" id="2Ob-xL-hHz"/>
+                            <constraint firstAttribute="bottom" secondItem="apL-qe-lEn" secondAttribute="bottom" constant="5" id="7mx-1Y-C9Q"/>
+                            <constraint firstAttribute="trailing" secondItem="sMC-iQ-jRl" secondAttribute="trailing" constant="5" id="7p2-lF-wK3"/>
                             <constraint firstItem="COJ-7m-Ab5" firstAttribute="leading" secondItem="kUr-Nq-zmr" secondAttribute="leading" id="8wS-63-N7Z"/>
+                            <constraint firstItem="sMC-iQ-jRl" firstAttribute="leading" secondItem="0Xc-Cs-gIU" secondAttribute="trailing" constant="8" id="9b6-ef-Vf3"/>
                             <constraint firstItem="Cws-4t-ZGs" firstAttribute="leading" secondItem="YSj-qu-khh" secondAttribute="trailing" id="Asr-YE-RXk"/>
                             <constraint firstItem="oi7-ek-w5j" firstAttribute="leading" secondItem="0Xc-Cs-gIU" secondAttribute="trailing" constant="8" id="GVd-pI-CMn"/>
                             <constraint firstItem="0Xc-Cs-gIU" firstAttribute="leading" secondItem="2sv-Ht-EwB" secondAttribute="trailing" constant="8" id="JsA-Sh-sQE"/>
@@ -946,9 +974,12 @@
                             <constraint firstItem="COJ-7m-Ab5" firstAttribute="top" secondItem="kUr-Nq-zmr" secondAttribute="top" id="bTn-wr-TVV"/>
                             <constraint firstItem="2sv-Ht-EwB" firstAttribute="leading" secondItem="kUr-Nq-zmr" secondAttribute="leading" constant="5" id="eyy-nF-Z4T"/>
                             <constraint firstItem="NJE-cZ-ey8" firstAttribute="top" secondItem="oi7-ek-w5j" secondAttribute="bottom" constant="8" id="f8R-XM-gXz"/>
+                            <constraint firstItem="sMC-iQ-jRl" firstAttribute="top" secondItem="NJE-cZ-ey8" secondAttribute="bottom" constant="12" id="fc7-5T-SVg"/>
                             <constraint firstItem="Cws-4t-ZGs" firstAttribute="top" secondItem="kUr-Nq-zmr" secondAttribute="top" id="j0G-Ea-CxZ"/>
+                            <constraint firstItem="apL-qe-lEn" firstAttribute="leading" secondItem="0Xc-Cs-gIU" secondAttribute="trailing" constant="13" id="kRL-oB-vgG"/>
                             <constraint firstItem="oi7-ek-w5j" firstAttribute="top" secondItem="Cws-4t-ZGs" secondAttribute="bottom" constant="5" id="lq1-DN-9vL"/>
                             <constraint firstAttribute="trailing" secondItem="NJE-cZ-ey8" secondAttribute="trailing" constant="5" id="orI-Px-dSM"/>
+                            <constraint firstAttribute="trailing" secondItem="apL-qe-lEn" secondAttribute="trailing" constant="20" id="wqc-9k-tzw"/>
                             <constraint firstAttribute="bottom" secondItem="0Xc-Cs-gIU" secondAttribute="bottom" constant="5" id="yhD-pt-hh5"/>
                         </constraints>
                     </view>
@@ -956,6 +987,7 @@
                         <outlet property="csvBtnLable" destination="NJE-cZ-ey8" id="Cga-ox-kvn"/>
                         <outlet property="deviceInfoTextView" destination="LBk-hN-1CS" id="DDP-6g-TnI"/>
                         <outlet property="heartRateTextView" destination="hkc-Ja-YwW" id="w0D-FB-vSe"/>
+                        <outlet property="spinner" destination="9Zy-Re-fn4" id="0QL-Mq-aqP"/>
                         <outlet property="strainGaugeTextView" destination="Azl-gc-bAW" id="fA6-Dz-JiI"/>
                     </connections>
                 </viewController>

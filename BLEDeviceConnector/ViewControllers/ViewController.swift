@@ -20,7 +20,7 @@ class ViewController: NSViewController {
     var centralManager : CBCentralManager!
     var isScanning: Bool!
     var selectedPeripherial: CBPeripheral?
-    var tableRowSelectedArray = [Int]()
+    //var tableRowSelectedArray = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,8 +128,8 @@ extension ViewController : NSTableViewDelegate, NSTableViewDataSource {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let table = notification.object as! NSTableView
         let row = table.selectedRow
-        if discoveredPeripherials.indices.contains(table.selectedRow), !tableRowSelectedArray.contains(row){
-            tableRowSelectedArray.append(row)
+        if discoveredPeripherials.indices.contains(table.selectedRow){
+           // tableRowSelectedArray.append(row)
             selectedPeripherial = discoveredPeripherials[table.selectedRow]
             centralManager.connect(selectedPeripherial!)
         }else{

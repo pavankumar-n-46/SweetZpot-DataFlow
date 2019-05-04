@@ -17,10 +17,14 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     @IBOutlet weak var deviceInfoTextView: NSTextView!
     @IBOutlet var heartRateTextView: NSTextView!
     @IBOutlet weak var csvBtnLable: NSButton!
+    @IBOutlet weak var spinner: NSProgressIndicator!
     
     var peripherial: CBPeripheral?
     var batteryCount = 1
     var firmwareCount = 1
+    var strain = [String]()
+    var heartrate = 0
+    var startRecording = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +33,7 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
         append(toTextView: deviceInfoTextView, text: decodePeripheralState(peripheralState: peripherial!.state))
         peripherial?.discoverServices(nil)
         csv = try? CSVWriter(stream: (OutputStream(toFileAtPath:
-            getDocumentsDirectory(fileName: "\(peripherial!.identifier.description)\(currentTimeMilliseconds()).csv"), append: false)!))
+            getDocumentsDirectory(fileName: "\(peripherial!.identifier.description)_\(currentTimeMilliseconds()).csv"), append: false)!))
     }
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -41,6 +45,19 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     }
     
     @IBAction func writingToCSV(_ sender: Any) {
+        if !startRecording{
+            spinner.isHidden = false
+            spinner.startAnimation(nil)
+            startRecording = true
+            csvBtnLable.title = "Stop writing"
+        }else{
+            startRecording = false
+            csvBtnLable.title = "Start writing to CSV"
+            spinner.stopAnimation(nil)
+        }
+    }
+    
+    @IBAction func exitPressed(_ sender: Any) {
         self.view.window?.close()
     }
     
@@ -97,23 +114,22 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        let uuid = peripheral.identifier
+        
         DispatchQueue.main.async { () -> Void in
-            
-            let uuid = peripheral.identifier
-            var strain : [Strain] = [Strain]()
-            var heartrate : Int = 0
-    
             if characteristic.uuid == BREATHING_CHARACTERISTIC {
-               strain = self.extractStrainGauge(value: characteristic.value!)
+               self.strain = self.extractStrainGauge(value: characteristic.value!)
             }
             if characteristic.uuid == HEART_RATE_CHARACTERISTIC {
                 self.append(toTextView: self.heartRateTextView, text: String("\(self.extractHeartRate(characteristic.value))"))
-                heartrate = self.extractHeartRate(characteristic.value)
+                self.heartrate = self.extractHeartRate(characteristic.value)
             }
-            let row = ExportCSVStruct.init(UUID:uuid, strainGauge: strain, HeartRate: heartrate)
-            CSVExporter.startExportData(data: row)
+            let row = ExportCSVStruct.init(UUID:uuid, strainGauge: self.strain, HeartRate: self.heartrate)
+            if self.startRecording {
+                CSVExporter.startExportData(data: row)
+            }
         }
-        
+  
         if characteristic.uuid == FIRMWARE_CHARACTERISTIC {
             DispatchQueue.main.async { () -> Void in
                 if self.firmwareCount < 2 {
@@ -136,14 +152,14 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     }
     
     
-    func extractStrainGauge(value : Data)->[Strain] {
-        let readings = value.withUnsafeBytes { (values: UnsafePointer<UInt16>)-> [Strain] in
+    func extractStrainGauge(value : Data)->[String] {
+        let readings = value.withUnsafeBytes { (values: UnsafePointer<UInt16>)-> [String] in
            // let timestamp = self.currentTimeMilliseconds()
-            var readings = [Strain]()
+            var readings = [String]()
             for i in 0 ..< 7 {
-                let data = Strain(value: values[i])
+                let data = String(values[i])
                 readings.append(data)
-                append(toTextView: strainGaugeTextView, text: String("\(data.value)"))
+                append(toTextView: strainGaugeTextView, text: data)
             }
             return readings
         }
@@ -154,7 +170,7 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
         //return (Date().timeIntervalSince1970 * 1000.0)
         let date = Date()
         let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "MM-dd-yyyy_HH:mm"
+        dateFormat.dateFormat = "MM-dd-yyyy_HH_mm"
         return dateFormat.string(from: date)
     }
     

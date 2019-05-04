@@ -17,7 +17,7 @@ struct Strain {
 
 struct ExportCSVStruct {
     let UUID: UUID
-    let strainGauge: [Strain]
+    let strainGauge: [String]
     let HeartRate: Int
 }
 

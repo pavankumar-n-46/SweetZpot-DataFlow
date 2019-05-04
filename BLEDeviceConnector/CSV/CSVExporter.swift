@@ -18,7 +18,7 @@ class CSVExporter {
             csv.beginNewRow()
             try? csv.write(field:data.UUID.uuidString)
             for num in value{
-                try? csv.write(field:num.value.description)
+                try? csv.write(field:num)
             }
             try? csv.write(field: data.HeartRate.description)
         }
