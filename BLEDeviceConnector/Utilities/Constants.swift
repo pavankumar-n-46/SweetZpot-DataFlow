@@ -11,7 +11,7 @@ import CoreBluetooth
 
 var discoveredPeripherials = [CBPeripheral]()
 
-let CSV_FILE_PATH = "/Users/pavan/Downloads/file.csv"
+
 
 let HEART_RATE_MONITOR_UUID = "0000180d-0000-1000-8000-00805f9b34fb"
 let STRAIN_GAUGE_UUID = "0000ffb0-0000-1000-8000-00805f9b34fb"
@@ -26,4 +26,11 @@ let BATTERY_SERVICE = CBUUID(string:"0x180f")
 let BATTERY_CHARACTERISTIC = CBUUID(string:"0x2a19")
 let DEVICE_INFORMATION_SERVICE = CBUUID(string:"0x180a")
 let FIRMWARE_CHARACTERISTIC = CBUUID(string:"0x2a26")
+
+func getDocumentsDirectory(fileName: String) -> String {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let strValue = paths[0].appendingPathComponent(fileName).absoluteString
+    let onlyThePath : Substring = strValue.dropFirst(7)
+    return String(onlyThePath)
+}
 

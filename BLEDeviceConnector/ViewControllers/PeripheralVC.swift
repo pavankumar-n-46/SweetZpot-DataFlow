@@ -10,6 +10,8 @@ import Cocoa
 import CoreBluetooth
 import CSV
 
+var csv : CSVWriter?
+
 class PeripheralVC: NSViewController, CBPeripheralDelegate{
     @IBOutlet var strainGaugeTextView: NSTextView!
     @IBOutlet weak var deviceInfoTextView: NSTextView!
@@ -26,6 +28,8 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
         append(toTextView: deviceInfoTextView, text: "\nName : \(peripherial?.name ?? "Device")")
         append(toTextView: deviceInfoTextView, text: decodePeripheralState(peripheralState: peripherial!.state))
         peripherial?.discoverServices(nil)
+        csv = try? CSVWriter(stream: (OutputStream(toFileAtPath:
+            getDocumentsDirectory(fileName: "\(peripherial!.identifier.description)\(currentTimeMilliseconds()).csv"), append: false)!))
     }
     override func viewDidAppear() {
         super.viewDidAppear()
@@ -146,8 +150,12 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
         return readings
     }
     
-    func currentTimeMilliseconds() -> Double {
-        return Date().timeIntervalSince1970 * 1000.0
+    func currentTimeMilliseconds() -> String {
+        //return (Date().timeIntervalSince1970 * 1000.0)
+        let date = Date()
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM-dd-yyyy_HH:mm"
+        return dateFormat.string(from: date)
     }
     
     func extractHeartRate(_ data : Data?) -> Int {
@@ -196,5 +204,5 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
             toTextView.scrollToEndOfDocument(nil)
         })
     }
-
+    
 }

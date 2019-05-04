@@ -9,8 +9,6 @@
 import Cocoa
 import CSV
 
-let csv = try? CSVWriter(stream: (OutputStream(toFileAtPath: CSV_FILE_PATH, append: false)!))
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
