@@ -8,11 +8,13 @@
 
 import Cocoa
 import CoreBluetooth
+import CSV
 
 class PeripheralVC: NSViewController, CBPeripheralDelegate{
     @IBOutlet var strainGaugeTextView: NSTextView!
     @IBOutlet weak var deviceInfoTextView: NSTextView!
     @IBOutlet var heartRateTextView: NSTextView!
+    @IBOutlet weak var csvBtnLable: NSButton!
     
     var peripherial: CBPeripheral?
     var batteryCount = 1
@@ -28,6 +30,14 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     override func viewDidAppear() {
         super.viewDidAppear()
         self.view.window?.title = peripherial?.name ?? "BLEDevice"
+    }
+    
+    override func viewWillDisappear() {
+        CSVExporter.stopExportingData()
+    }
+    
+    @IBAction func writingToCSV(_ sender: Any) {
+        self.view.window?.close()
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -47,9 +57,7 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
             
         }
     }
-    @IBAction func disconnectDevice(_ sender: Any) {
-        
-    }
+
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         for characteristic in service.characteristics! {
@@ -85,19 +93,21 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        
-        if characteristic.uuid == BREATHING_CHARACTERISTIC {
-            //let heartRate = deriveBeatsPerMinute(using: characteristic)
-            //print(peripheral.identifier)
-            DispatchQueue.main.async { () -> Void in
-                self.extractStrainGauge(value: characteristic.value!)
+        DispatchQueue.main.async { () -> Void in
+            
+            let uuid = peripheral.identifier
+            var strain : [Strain] = [Strain]()
+            var heartrate : Int = 0
+    
+            if characteristic.uuid == BREATHING_CHARACTERISTIC {
+               strain = self.extractStrainGauge(value: characteristic.value!)
             }
-        }
-        
-        if characteristic.uuid == HEART_RATE_CHARACTERISTIC {
-            DispatchQueue.main.async { () -> Void in
+            if characteristic.uuid == HEART_RATE_CHARACTERISTIC {
                 self.append(toTextView: self.heartRateTextView, text: String("\(self.extractHeartRate(characteristic.value))"))
+                heartrate = self.extractHeartRate(characteristic.value)
             }
+            let row = ExportCSVStruct.init(UUID:uuid, strainGauge: strain, HeartRate: heartrate)
+            CSVExporter.startExportData(data: row)
         }
         
         if characteristic.uuid == FIRMWARE_CHARACTERISTIC {
@@ -122,16 +132,18 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     }
     
     
-    func extractStrainGauge(value : Data) {
-        value.withUnsafeBytes { (values: UnsafePointer<UInt16>) in
-            let timestamp = self.currentTimeMilliseconds()
+    func extractStrainGauge(value : Data)->[Strain] {
+        let readings = value.withUnsafeBytes { (values: UnsafePointer<UInt16>)-> [Strain] in
+           // let timestamp = self.currentTimeMilliseconds()
             var readings = [Strain]()
             for i in 0 ..< 7 {
-                let data = Strain(value: values[i], timestamp: timestamp + 50 * Double(i))
+                let data = Strain(value: values[i])
                 readings.append(data)
                 append(toTextView: strainGaugeTextView, text: String("\(data.value)"))
             }
+            return readings
         }
+        return readings
     }
     
     func currentTimeMilliseconds() -> Double {

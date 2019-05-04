@@ -1,0 +1,6 @@
+framework module Pods_SweetZpot_Dataflow {
+  umbrella header "Pods-SweetZpot Dataflow-umbrella.h"
+
+  export *
+  module * { export * }
+}

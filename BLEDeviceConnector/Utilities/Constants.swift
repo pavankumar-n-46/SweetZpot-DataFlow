@@ -11,6 +11,8 @@ import CoreBluetooth
 
 var discoveredPeripherials = [CBPeripheral]()
 
+let CSV_FILE_PATH = "/Users/pavan/Downloads/file.csv"
+
 let HEART_RATE_MONITOR_UUID = "0000180d-0000-1000-8000-00805f9b34fb"
 let STRAIN_GAUGE_UUID = "0000ffb0-0000-1000-8000-00805f9b34fb"
 

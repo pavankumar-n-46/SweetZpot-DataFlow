@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07CFBDBFB20C1CCB097F09A5 /* Pods_SweetZpot_Dataflow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8289310755E909C27C3CFF21 /* Pods_SweetZpot_Dataflow.framework */; };
 		8B09DDA2227C25AA00A5DF8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B09DDA1227C25AA00A5DF8A /* AppDelegate.swift */; };
 		8B09DDA4227C25AA00A5DF8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B09DDA3227C25AA00A5DF8A /* ViewController.swift */; };
 		8B09DDA6227C25AC00A5DF8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B09DDA5227C25AC00A5DF8A /* Assets.xcassets */; };
@@ -14,9 +15,12 @@
 		8B09DDB4227C28A500A5DF8A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B09DDB3227C28A500A5DF8A /* Constants.swift */; };
 		8B09DDB9227C4B5C00A5DF8A /* PeripheralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B09DDB8227C4B5C00A5DF8A /* PeripheralVC.swift */; };
 		8B09DDBB227C5DD800A5DF8A /* Strain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B09DDBA227C5DD800A5DF8A /* Strain.swift */; };
+		8B5F82FA227D79E7001A8426 /* CSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F82F9227D79E7001A8426 /* CSVExporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E016F9D35AC31F6FC81417D /* Pods-SweetZpot Dataflow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweetZpot Dataflow.debug.xcconfig"; path = "Target Support Files/Pods-SweetZpot Dataflow/Pods-SweetZpot Dataflow.debug.xcconfig"; sourceTree = "<group>"; };
+		8289310755E909C27C3CFF21 /* Pods_SweetZpot_Dataflow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweetZpot_Dataflow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B09DD9E227C25AA00A5DF8A /* SweetZpot Dataflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SweetZpot Dataflow.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B09DDA1227C25AA00A5DF8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B09DDA3227C25AA00A5DF8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,6 +31,8 @@
 		8B09DDB3227C28A500A5DF8A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B09DDB8227C4B5C00A5DF8A /* PeripheralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralVC.swift; sourceTree = "<group>"; };
 		8B09DDBA227C5DD800A5DF8A /* Strain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strain.swift; sourceTree = "<group>"; };
+		8B5F82F9227D79E7001A8426 /* CSVExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExporter.swift; sourceTree = "<group>"; };
+		EC50EECE36B1BF94FDE0DF67 /* Pods-SweetZpot Dataflow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweetZpot Dataflow.release.xcconfig"; path = "Target Support Files/Pods-SweetZpot Dataflow/Pods-SweetZpot Dataflow.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,17 +40,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07CFBDBFB20C1CCB097F09A5 /* Pods_SweetZpot_Dataflow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25372991C9DF1B396211353F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E016F9D35AC31F6FC81417D /* Pods-SweetZpot Dataflow.debug.xcconfig */,
+				EC50EECE36B1BF94FDE0DF67 /* Pods-SweetZpot Dataflow.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8B09DD95227C25AA00A5DF8A = {
 			isa = PBXGroup;
 			children = (
 				8B09DDA0227C25AA00A5DF8A /* BLEDeviceConnector */,
 				8B09DD9F227C25AA00A5DF8A /* Products */,
+				25372991C9DF1B396211353F /* Pods */,
+				CFD61D7777770D1AB98BBD14 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,10 +77,12 @@
 		8B09DDA0227C25AA00A5DF8A /* BLEDeviceConnector */ = {
 			isa = PBXGroup;
 			children = (
+				8B09DDB5227C28A900A5DF8A /* Utilities */,
 				8B09DDB1227C25DB00A5DF8A /* SupportingFiles */,
 				8B09DDB2227C25F300A5DF8A /* ViewControllers */,
-				8B09DDA7227C25AC00A5DF8A /* Main.storyboard */,
+				8BAC0D4E227D4F44007BBA69 /* CSV */,
 				8B09DDAB227C25AC00A5DF8A /* BLEDeviceConnector.entitlements */,
+				8B09DDA7227C25AC00A5DF8A /* Main.storyboard */,
 				8B09DDAA227C25AC00A5DF8A /* Info.plist */,
 			);
 			path = BLEDeviceConnector;
@@ -72,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				8B09DDA1227C25AA00A5DF8A /* AppDelegate.swift */,
-				8B09DDB5227C28A900A5DF8A /* Utilities */,
 				8B09DDA5227C25AC00A5DF8A /* Assets.xcassets */,
 			);
 			path = SupportingFiles;
@@ -96,6 +115,22 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		8BAC0D4E227D4F44007BBA69 /* CSV */ = {
+			isa = PBXGroup;
+			children = (
+				8B5F82F9227D79E7001A8426 /* CSVExporter.swift */,
+			);
+			path = CSV;
+			sourceTree = "<group>";
+		};
+		CFD61D7777770D1AB98BBD14 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8289310755E909C27C3CFF21 /* Pods_SweetZpot_Dataflow.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +138,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B09DDAE227C25AC00A5DF8A /* Build configuration list for PBXNativeTarget "SweetZpot Dataflow" */;
 			buildPhases = (
+				E30739059B8BE4FD41BD29B4 /* [CP] Check Pods Manifest.lock */,
 				8B09DD9A227C25AA00A5DF8A /* Sources */,
 				8B09DD9B227C25AA00A5DF8A /* Frameworks */,
 				8B09DD9C227C25AA00A5DF8A /* Resources */,
+				BEAE5F540B1744739C8C846D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,12 +203,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BEAE5F540B1744739C8C846D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SweetZpot Dataflow/Pods-SweetZpot Dataflow-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CSV.swift/CSV.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSV.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SweetZpot Dataflow/Pods-SweetZpot Dataflow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E30739059B8BE4FD41BD29B4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SweetZpot Dataflow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8B09DD9A227C25AA00A5DF8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8B09DDA4227C25AA00A5DF8A /* ViewController.swift in Sources */,
+				8B5F82FA227D79E7001A8426 /* CSVExporter.swift in Sources */,
 				8B09DDBB227C5DD800A5DF8A /* Strain.swift in Sources */,
 				8B09DDA2227C25AA00A5DF8A /* AppDelegate.swift in Sources */,
 				8B09DDB9227C4B5C00A5DF8A /* PeripheralVC.swift in Sources */,
@@ -310,6 +395,7 @@
 		};
 		8B09DDAF227C25AC00A5DF8A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E016F9D35AC31F6FC81417D /* Pods-SweetZpot Dataflow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BLEDeviceConnector/BLEDeviceConnector.entitlements;
@@ -329,6 +415,7 @@
 		};
 		8B09DDB0227C25AC00A5DF8A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC50EECE36B1BF94FDE0DF67 /* Pods-SweetZpot Dataflow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BLEDeviceConnector/BLEDeviceConnector.entitlements;
