@@ -32,7 +32,7 @@ class ViewController: NSViewController {
     }
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.view.window?.title = "SweetZpot"
+        self.view.window?.title = "SweetZpot - Home"
     }
     
     @IBAction func deviceScanning(_ sender: Any) {
@@ -48,7 +48,7 @@ class ViewController: NSViewController {
     
     func startScanning(){
         isScanning = true
-        centralManager.scanForPeripherals(withServices:nil)
+        centralManager.scanForPeripherals(withServices: [BREATHING_SERVICE,HEART_RATE_SERVICE], options:[CBCentralManagerScanOptionAllowDuplicatesKey:false])
         print("scanning started")
         DispatchQueue.main.async {
             self.scanningBtn.title = "Stop Scanning"

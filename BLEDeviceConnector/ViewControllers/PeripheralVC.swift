@@ -38,6 +38,13 @@ class PeripheralVC: NSViewController, CBPeripheralDelegate{
     override func viewDidAppear() {
         super.viewDidAppear()
         self.view.window?.title = peripherial?.name ?? "BLEDevice"
+        perform(#selector(closeWindow), with: nil, afterDelay: 1)
+    }
+    
+    @objc func closeWindow(){
+        if firmwareCount == 1 {
+            self.view.window?.close()
+        }
     }
     
     override func viewWillDisappear() {
