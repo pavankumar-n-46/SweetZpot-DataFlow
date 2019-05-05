@@ -33,4 +33,10 @@ func getDocumentsDirectory(fileName: String) -> String {
     let onlyThePath : Substring = strValue.dropFirst(7)
     return String(onlyThePath)
 }
+//BreathZpot-E5F68612-2482-44C7-BBB0-39E7A08D3166
+func getFirstOrLastPartOfUUID(cbuuid : UUID)->String {
+    let str = cbuuid.uuidString
+    let index = str.firstIndex(of: "-")!
+    return String(str[..<index])
+}
 

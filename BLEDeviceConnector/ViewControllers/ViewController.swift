@@ -121,7 +121,9 @@ extension ViewController : NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        guard let foundDevice =  discoveredPeripherials[row].name else {return "no Name"}
+        let peripherialName = discoveredPeripherials[row].name ?? "BLE Device"
+        let peripherialUUID = getFirstOrLastPartOfUUID(cbuuid: discoveredPeripherials[row].identifier)
+        let foundDevice =  "\(peripherialName)-\(peripherialUUID)"
         return foundDevice
     }
     

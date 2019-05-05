@@ -766,10 +766,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="IQV-Ht-ons">
-                                <rect key="frame" x="444" y="216" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </progressIndicator>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0SU-CJ-HxI">
                                 <rect key="frame" x="284" y="13" width="192" height="37"/>
                                 <constraints>
@@ -784,15 +780,22 @@
                                     <action selector="terminate:" target="rPt-NT-nkU" id="9xs-Fq-hOy"/>
                                 </connections>
                             </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="IQV-Ht-ons">
+                                <rect key="frame" x="444" y="216" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="0SU-CJ-HxI" secondAttribute="trailing" constant="10" id="2kx-9K-rlU"/>
+                            <constraint firstItem="IQV-Ht-ons" firstAttribute="leading" secondItem="GYy-iP-NGi" secondAttribute="trailing" constant="164" id="4lG-pP-c9l"/>
                             <constraint firstItem="0SU-CJ-HxI" firstAttribute="leading" secondItem="GYy-iP-NGi" secondAttribute="trailing" constant="10" id="7Ny-3I-feH"/>
+                            <constraint firstAttribute="trailing" secondItem="IQV-Ht-ons" secondAttribute="trailing" constant="20" id="9KZ-KP-kEy"/>
                             <constraint firstItem="3zc-iB-JlN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="35" id="DaW-Hb-JEm"/>
                             <constraint firstAttribute="bottom" secondItem="0SU-CJ-HxI" secondAttribute="bottom" constant="20" id="FYb-eI-9hm"/>
                             <constraint firstItem="3zc-iB-JlN" firstAttribute="leading" secondItem="GYy-iP-NGi" secondAttribute="trailing" constant="10" id="H8k-1I-V9t"/>
                             <constraint firstAttribute="bottom" secondItem="GYy-iP-NGi" secondAttribute="bottom" id="ISr-z4-axb"/>
+                            <constraint firstItem="0SU-CJ-HxI" firstAttribute="top" secondItem="IQV-Ht-ons" secondAttribute="bottom" constant="170" id="OXG-l0-12p"/>
                             <constraint firstItem="GYy-iP-NGi" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Qch-YO-Uhg"/>
+                            <constraint firstItem="IQV-Ht-ons" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="42" id="Tyd-gY-Vog"/>
                             <constraint firstItem="GYy-iP-NGi" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="rjs-Nd-xfO"/>
                             <constraint firstAttribute="trailing" secondItem="3zc-iB-JlN" secondAttribute="trailing" constant="10" id="umN-Yg-Jkb"/>
                         </constraints>
@@ -908,15 +911,15 @@
                             <scrollView appearanceType="aqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xc-Cs-gIU">
                                 <rect key="frame" x="145" y="5" width="92" height="273"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Lhh-Ba-pn8">
-                                    <rect key="frame" x="0.0" y="0.0" width="76" height="273"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="77" height="273"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="hkc-Ja-YwW">
-                                            <rect key="frame" x="0.0" y="0.0" width="76" height="273"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="77" height="273"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="76" height="273"/>
+                                            <size key="minSize" width="77" height="273"/>
                                             <size key="maxSize" width="240" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -927,7 +930,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Hi5-fR-3hp">
-                                    <rect key="frame" x="76" y="0.0" width="16" height="273"/>
+                                    <rect key="frame" x="77" y="0.0" width="15" height="273"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
